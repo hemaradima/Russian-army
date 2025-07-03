@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="appTitle">Русская Армия</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="language-switch">
+                <button onclick="setLanguage('en')">English</button>
+                <button onclick="setLanguage('ru')">Русский</button>
+            </div>
+
+            <svg class="russian-army-logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <path d="M32 0C14.327 0 0 14.327 0 32s14.327 32 32 32 32-14.327 32-32S49.673 0 32 0zM32 58C17.663 58 6 46.337 6 32S17.663 6 32 6s26 11.663 26 26-11.663 26-26 26zM46.734 26.66l-10.748 1.488L32 17.585l-3.986 10.563-10.748-1.488 7.378 8.44-1.92 11.39 9.276-5.83 9.276 5.83-1.92-11.39 7.378-8.44z"/>
+            </svg>
+            <div>
+                <h1 id="headerTitle">Русская Армия</h1>
+                <p id="headerSubtitle">Military Personnel Management Database</p>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search by Geton Number, Name or Specialist..." data-en-placeholder="Search by Geton Number, Name or Specialist..." data-ru-placeholder="Поиск по номеру жетона, имени или специальности...">
+                <button onclick="searchPersonnel()" id="searchBtn">🔍 Search</button>
+                <button onclick="showAllPersonnel()" id="showAllBtn">📋 Show All</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="form-section">
+                <h2 id="formSectionTitle">Personnel Information</h2>
+                <form id="personnelForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label id="labelFirstName">First Name:</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label id="labelMiddleName">Middle Name:</label>
+                            <input type="text" id="middleName">
+                        </div>
+                        <div class="form-group">
+                            <label id="labelFamilyName">Family Name:</label>
+                            <input type="text" id="familyName" required>
+                        </div>
+                        <div class="form-group">
+                            <label id="labelNickname">Nickname:</label>
+                            <input type="text" id="nickname">
+                        </div>
+                        <div class="form-group">
+                            <label id="labelGetonNumber">Geton Number:</label>
+                            <input type="text" id="getonNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label id="labelSpecialist">Specialist:</label>
+                            <select id="specialist">
+                                <option value="" data-en="Select Specialist" data-ru="Выберите специальность">Select Specialist</option>
+                                <option value="Fighter" data-en="Fighter" data-ru="Боец">Fighter</option>
+                                <option value="Tanker" data-en="Tanker" data-ru="Танкист">Tanker</option>
+                                <option value="Driver" data-en="Driver" data-ru="Водитель">Driver</option>
+                                <option value="Medic" data-en="Medic" data-ru="Медик">Medic</option>
+                                <option value="Engineer" data-en="Engineer" data-ru="Инженер">Engineer</option>
+                                <option value="Communications" data-en="Communications" data-ru="Связист">Communications</option>
+                                <option value="Artillery" data-en="Artillery" data-ru="Артиллерист">Artillery</option>
+                                <option value="Intelligence" data-en="Intelligence" data-ru="Разведчик">Intelligence</option>
+                                <option value="Logistics" data-en="Logistics" data-ru="Логистика">Logistics</option>
+                                <option value="Other" data-en="Other" data-ru="Другое">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label id="labelServiceLocation">Service Location:</label>
+                            <input type="text" id="serviceLocation">
+                        </div>
+                        <div class="form-group">
+                            <label id="labelStatus">Status:</label>
+                            <select id="status">
+                                <option value="Alive" data-en="Alive" data-ru="Жив">Alive</option>
+                                <option value="Deceased" data-en="Deceased" data-ru="Погиб">Deceased</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label id="labelMaritalStatus">Marital Status:</label>
+                            <select id="maritalStatus">
+                                <option value="Single" data-en="Single" data-ru="Холост">Single</option>
+                                <option value="Married" data-en="Married" data-ru="Женат">Married</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label id="labelBankAccount">Bank Account:</label>
+                            <input type="text" id="bankAccount">
+                        </div>
+                        <div class="form-group">
+                            <label id="labelServiceType">Service Type:</label>
+                            <select id="serviceType">
+                                <option value="Contract" data-en="Contract" data-ru="Контрактник">Contract</option>
+                                <option value="Conscript" data-en="Conscript" data-ru="Призывник">Conscript</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label id="labelServiceStatus">Service Status:</label>
+                            <select id="serviceStatus">
+                                <option value="Active Duty" data-en="Active Duty" data-ru="На службе">Active Duty</option>
+                                <option value="On Leave" data-en="On Leave" data-ru="В отпуске">On Leave</option>
+                                <option value="Sick Leave" data-en="Sick Leave" data-ru="На больничном">Sick Leave</option>
+                                <option value="Training" data-en="Training" data-ru="На учениях">Training</option>
+                                <option value="Transferred" data-en="Transferred" data-ru="Переведен">Transferred</option>
+                                <option value="Discharged" data-en="Discharged" data-ru="Уволен">Discharged</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label id="labelContractStart">Contract Start:</label>
+                            <input type="date" id="contractStart">
+                        </div>
+                        <div class="form-group">
+                            <label id="labelContractEnd">Contract End:</label>
+                            <input type="date" id="contractEnd">
+                        </div>
+                        <div class="form-group">
+                            <label id="labelLeaveStartDate">Leave Start:</label>
+                            <input type="date" id="leaveStartDate">
+                        </div>
+                        <div class="form-group">
+                            <label id="labelLeaveEndDate">Leave End:</label>
+                            <input type="date" id="leaveEndDate">
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <button type="button" id="saveBtn" class="btn btn-success" onclick="savePersonnel()">💾 Save Personnel</button>
+                        <button type="button" id="updateBtn" class="btn btn-primary" onclick="updatePersonnel()">✏️ Update</button>
+                        <button type="button" id="clearBtn" class="btn btn-warning" onclick="clearForm()">🗑️ Clear Form</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="photo-section">
+                <h2 id="photoSectionTitle">Photo Management</h2>
+                <div class="photo-preview">
+                    <span id="noPhotoText">No Photo</span>
+                    <img id="photoPreview" style="display: none;">
+                </div>
+                <div class="photo-buttons">
+                    <input type="file" id="photoInput" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
+                    <button type="button" id="uploadPhotoBtn" class="btn btn-primary" onclick="document.getElementById('photoInput').click()">📁 Upload Photo</button>
+                    <button type="button" id="takePhotoBtn" class="btn btn-success" onclick="openCamera()">📷 Take Photo</button>
+                    <button type="button" id="downloadPhotoBtn" class="btn btn-warning" onclick="downloadPhoto()">⬇️ Download Photo</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="personnel-list">
+            <h2 id="recordsListTitle">Personnel Records</h2>
+            <div id="personnelRecords"></div>
+        </div>
+    </div>
+
+    <div id="cameraModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCamera()">&times;</span>
+            <h2 id="cameraModalTitle">Take Photo</h2>
+            <video id="cameraVideo" width="400" height="300" autoplay></video>
+            <canvas id="captureCanvas" width="400" height="300"></canvas>
+            <div style="margin-top: 20px;">
+                <button id="captureBtn" class="btn btn-success" onclick="capturePhoto()">📸 Capture</button>
+                <button id="cancelCaptureBtn" class="btn btn-danger" onclick="closeCamera()">❌ Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
