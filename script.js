@@ -186,6 +186,16 @@ function setLanguage(lang) {
 
     renderPersonnelList(); // Re-render list to update card language
 }
+ // Update footer copyright and contact info
+        document.querySelectorAll('.footer p[lang="en"]').forEach(function(el) {
+            el.style.display = 'none';
+        });
+        document.querySelectorAll('.footer p[lang="ru"]').forEach(function(el) {
+            el.style.display = 'none';
+        });
+        document.querySelectorAll('.footer p[lang="' + lang + '"]').forEach(function(el) {
+            el.style.display = 'block'; // أو 'flex' أو 'inline-block' حسب طريقة عرضك
+        });
 
 // Initialize language
 document.addEventListener('DOMContentLoaded', () => {
