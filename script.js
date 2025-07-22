@@ -1,4 +1,4 @@
-// Global variables
+ // Global variables
 let personnelData = [];
 let currentLanguage = 'en';
 let editingIndex = -1;
